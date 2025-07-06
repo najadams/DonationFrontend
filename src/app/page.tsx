@@ -71,7 +71,13 @@ const quickLinks = [
   },
 ];
 
-const AnimatedCounter = ({ value, prefix = "", suffix = "" }) => {
+interface AnimatedCounterProps {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+}
+
+const AnimatedCounter = ({ value, prefix = "", suffix = "" }: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
