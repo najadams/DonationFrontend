@@ -200,7 +200,7 @@ export default function Store() {
         filtered.sort((a, b) => b.price - a.price);
         break;
       case "newest":
-        filtered.sort((a, b) => b.id - a.id);
+        filtered.sort((a, b) => parseInt(b.id) - parseInt(a.id));
         break;
       default:
         // 'featured' - no sorting needed
@@ -210,7 +210,7 @@ export default function Store() {
     setFilteredArtworks(filtered);
   }, [selectedFilters, sortBy]);
 
-  const handleFilterChange = (type, value) => {
+  const handleFilterChange = (type: keyof typeof selectedFilters, value: string) => {
     setSelectedFilters((prev) => ({
       ...prev,
       [type]: prev[type] === value ? "" : value,
@@ -226,7 +226,7 @@ export default function Store() {
     });
   };
 
-  const openQuickView = (artwork) => {
+  const openQuickView = (artwork: Artwork) => {
     setSelectedArtwork(artwork);
     setIsQuickViewOpen(true);
   };
